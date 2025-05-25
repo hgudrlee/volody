@@ -1,0 +1,280 @@
+.container {
+  padding-top: 6rem;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: #6c5ce7;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.backLink:hover {
+  color: #5b4bc4;
+}
+
+.backLink span {
+  margin-left: 0.5rem;
+}
+
+.questionDetail {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.questionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.questionMeta {
+  display: flex;
+  gap: 1.5rem;
+  color: #666;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+}
+
+.metaItem svg {
+  margin-right: 0.5rem;
+  color: #6c5ce7;
+}
+
+.questionContent {
+  color: #333;
+  line-height: 1.6;
+}
+
+.questionContent p {
+  margin-bottom: 1.5rem;
+}
+
+.questionContent p:last-child {
+  margin-bottom: 0;
+}
+
+.commentsSection {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+}
+
+.commentsTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.commentItem {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.commentItem:last-child {
+  border-bottom: none;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.commentAuthor,
+.commentDate {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.commentAuthor svg,
+.commentDate svg {
+  margin-right: 0.5rem;
+  color: #6c5ce7;
+}
+
+.commentContent {
+  color: #333;
+  line-height: 1.5;
+}
+
+.commentForm {
+  margin-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 2rem;
+}
+
+.commentInput {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  resize: vertical;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.commentInput:focus {
+  outline: none;
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.1);
+}
+
+.commentButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.commentButton:hover {
+  background-color: #5b4bc4;
+}
+
+.commentButton:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.commentButton span {
+  margin-left: 0.5rem;
+}
+
+.authorActions {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.editButton,
+.deleteButton {
+  padding: 0.375rem 0.75rem;
+  background: none;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+}
+
+.editButton {
+  color: #6c5ce7;
+  text-decoration: none;
+}
+
+.editButton:hover {
+  background-color: rgba(108, 92, 231, 0.1);
+}
+
+.deleteButton {
+  color: #dc3545;
+}
+
+.deleteButton:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.editButton span,
+.deleteButton span {
+  margin-left: 0.375rem;
+}
+
+/* 심플한 버전 */
+.loginPrompt {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+}
+
+.loginPrompt p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.loginButton {
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.loginButton:hover {
+  background-color: #5b4bc4;
+}
+
+.loginButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .loginPrompt {
+    padding: 1.5rem 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .loginPrompt p {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .loginButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 200px;
+  }
+}
