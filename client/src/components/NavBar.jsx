@@ -90,7 +90,7 @@ export default function Navbar() {
                   변환하기
                 </a>
                 <a
-                  href="https://github.com/volody"
+                  href="https://github.com/hgudrlee/volody/tree/main"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.menuItem}
@@ -178,7 +178,7 @@ export default function Navbar() {
                 변환하기
               </a>
               <a
-                href="https://github.com/volody"
+                href="https://github.com/hgudrlee/volody/tree/main"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.mobileMenuItem}

@@ -58,6 +58,10 @@
   align-items: center;
 }
 
+.metaItem:first-child {
+  gap: 0.5rem;
+}
+
 .metaItem svg {
   margin-right: 0.5rem;
   color: #6c5ce7;
@@ -112,6 +116,10 @@
   margin-bottom: 0.75rem;
 }
 
+.commentAuthor {
+  gap: 0.5rem;
+}
+
 .commentAuthor,
 .commentDate {
   display: flex;
@@ -146,6 +154,7 @@
   margin-bottom: 1rem;
   font-family: inherit;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .commentInput:focus {

@@ -14,7 +14,7 @@ export default function Footer() {
           <Link to="/convert" className={styles.footerLink}>
             변환하기
           </Link>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+          <a href="https://github.com/hgudrlee/volody/tree/main" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
             GITHUB
           </a>
           <Link to="/community" className={styles.footerLink}>

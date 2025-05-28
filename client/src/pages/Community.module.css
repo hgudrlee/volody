@@ -138,6 +138,10 @@
   align-items: center;
 }
 
+.metaItem:first-child {
+  gap: 0.5rem;
+}
+
 .metaItem svg {
   margin-right: 0.5rem;
   color: #6c5ce7;
@@ -162,5 +166,22 @@
 
   .newQuestionButton {
     flex-shrink: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .questionMeta {
+    font-size: 0.83rem;
+  }
+
+  .questionAvatar {
+    display: none;
+  }
+
+  .userName {
+    background-color: #bfe5ff;
+    color: #1a80d1;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
   }
 }

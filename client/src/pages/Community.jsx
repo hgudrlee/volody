@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   MessageSquare,
-  User,
+  // User,
   Clock,
   ChevronRight,
   Search,
@@ -11,65 +12,27 @@ import {
 import styles from "./Community.module.css";
 import useUserStore from "../stores/useUserStore";
 import useModalStore from "../stores/useModalStore";
+import Avatar from "../components/Avatar";
 
 export default function Community() {
   const [searchQuery, setSearchQuery] = useState("");
-  const { user } = useUserStore()
-  const { openLoginModal } = useModalStore()
+  const [questions, setQuestions] = useState([]);
+  const { user } = useUserStore();
+  const { openLoginModal } = useModalStore();
 
-  // 더미 데이터 - 실제 구현에서는 API에서 가져올 것입니다
-  const questions = [
-    {
-      id: 1,
-      title: "녹음된 피아노 연주가 MIDI로 정확하게 변환되지 않아요",
-      author: "피아노러버",
-      date: "2023-05-15",
-      views: 342,
-      comments: 8,
-      content:
-        "피아노 연주를 녹음했는데 화음 부분이 제대로 인식되지 않습니다. 어떻게 해야 더 정확한 결과를 얻을 수 있을까요?",
-    },
-    {
-      id: 2,
-      title: "기타 연주 녹음 시 추천 마이크와 설정이 궁금합니다",
-      author: "기타맨",
-      date: "2023-05-10",
-      views: 215,
-      comments: 12,
-      content:
-        "어쿠스틱 기타 연주를 녹음할 때 어떤 마이크와 설정을 사용하면 좋을까요? 변환 품질을 높이기 위한 팁이 있으면 공유해주세요.",
-    },
-    {
-      id: 3,
-      title: "변환된 악보에서 박자가 틀리게 나오는 문제",
-      author: "작곡초보",
-      date: "2023-05-08",
-      views: 189,
-      comments: 5,
-      content:
-        "녹음한 멜로디는 4/4박자인데 변환된 악보에서는 3/4박자로 나옵니다. 이런 경우 어떻게 수정할 수 있나요?",
-    },
-    {
-      id: 4,
-      title: "여러 악기가 섞인 녹음 파일 변환 가능한가요?",
-      author: "밴드리더",
-      date: "2023-05-05",
-      views: 276,
-      comments: 7,
-      content:
-        "드럼, 기타, 베이스가 함께 녹음된 파일을 각 악기별로 분리해서 MIDI로 변환할 수 있나요?",
-    },
-    {
-      id: 5,
-      title: "변환된 MIDI 파일을 Logic Pro에서 사용하는 방법",
-      author: "프로듀서K",
-      date: "2023-05-01",
-      views: 198,
-      comments: 4,
-      content:
-        "이 서비스로 변환한 MIDI 파일을 Logic Pro에 불러왔는데 일부 노트가 이상하게 표시됩니다. 어떻게 해결할 수 있을까요?",
-    },
-  ];
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await axios.get("http://localhost:5001/questions"); // 백엔드 API 주소
+        setQuestions(response.data.data);
+        console.log("질문 목록:", response.data.data);
+      } catch (error) {
+        console.error("질문을 불러오는 데 실패했습니다:", error);
+      }
+    };
+
+    fetchQuestions();
+  }, []);
 
   const filteredQuestions = questions.filter(
     (question) =>
@@ -102,10 +65,7 @@ export default function Community() {
               <span>질문하기</span>
             </Link>
           ) : (
-            <button
-              onClick={openLoginModal}
-              className={styles.newQuestionButton}
-            >
+            <button onClick={openLoginModal} className={styles.newQuestionButton}>
               <Plus size={18} />
               <span>질문하기</span>
             </button>
@@ -124,19 +84,26 @@ export default function Community() {
                   <h3 className={styles.questionTitle}>{question.title}</h3>
                   <ChevronRight className={styles.arrowIcon} size={18} />
                 </div>
-                <p className={styles.questionPreview}>{question.content}</p>
+                <p className={styles.questionPreview}>
+                  {question.content.length > 150
+                    ? question.content.slice(0, 150) + "..."
+                    : question.content}
+                </p>
                 <div className={styles.questionMeta}>
                   <div className={styles.metaItem}>
-                    <User size={14} />
-                    <span>{question.author}</span>
+                    {/* <User size={14} /> */}
+                    <Avatar user={question.author} size="xs" className={styles.questionAvatar}/>
+                    <span className={styles.userName}>{question.author?.username || "작성자 없음"}</span>
                   </div>
                   <div className={styles.metaItem}>
                     <Clock size={14} />
-                    <span>{question.date}</span>
+                    <span>
+                      {new Date(question.created_at).toLocaleDateString()}
+                    </span>
                   </div>
                   <div className={styles.metaItem}>
                     <MessageSquare size={14} />
-                    <span>{question.comments}</span>
+                    <span>0</span> {/* 댓글 수는 추후 서버에서 받아서 교체 */}
                   </div>
                 </div>
               </Link>

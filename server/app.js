@@ -7,6 +7,8 @@ require("dotenv").config();
 const initPassport = require("./config/passport");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");  // 구글 로그인 라우터 추가
+const questionsRoutes = require("./routes/questions");
+const commentRoutes = require("./routes/comments");
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -30,6 +32,8 @@ initPassport(passport);
 // 라우터 설정
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);  // 구글 로그인과 관련된 라우터 추가
+app.use("/questions", questionsRoutes);
+app.use("/", commentRoutes);
 
 // 서버 시작
 app.listen(PORT, () => {

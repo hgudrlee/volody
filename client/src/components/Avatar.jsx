@@ -1,15 +1,21 @@
-import styles from "./Avatar.module.css"
+import styles from "./Avatar.module.css";
 
-export default function Avatar({ user, size = "md" }) {
-  if (!user) return null
+export default function Avatar({ user, size = "md", className =  ""}) {
+  if (!user) return null;
+  console.log(user.profile_picture);
 
   return (
-    <div className={`${styles.avatar} ${styles[size]}`}>
+    <div className={`${styles.avatar} ${styles[size]} ${className}`}>
       {user.profile_picture ? (
         <img
-          src={user.profile_picture || "/placeholder.svg"}
+          src={user.profile_picture}
           alt={user.username}
           className={styles.avatarImage}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/placeholder.svg";
+          }}
+          referrerPolicy="no-referrer"
         />
       ) : (
         <span className={styles.avatarText}>
@@ -17,5 +23,5 @@ export default function Avatar({ user, size = "md" }) {
         </span>
       )}
     </div>
-  )
+  );
 }

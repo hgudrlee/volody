@@ -1,65 +1,98 @@
-import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { User, Clock, ArrowLeft, Send, Edit, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Clock, ArrowLeft, Send, Edit, Trash2 } from "lucide-react";
 import styles from "./CommunityDetail.module.css";
 import useUserStore from "../stores/useUserStore";
 import useModalStore from "../stores/useModalStore";
+import axios from "axios";
+import Avatar from "../components/Avatar";
 
 export default function CommunityDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [question, setQuestion] = useState(null);
   const [commentText, setCommentText] = useState("");
-  const { user } = useUserStore();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { user, token } = useUserStore();
   const { openLoginModal } = useModalStore();
 
-  // 더미 데이터 - 실제 구현에서는 API에서 가져올 것입니다
-  const question = {
-    id: 1,
-    title: "녹음된 피아노 연주가 MIDI로 정확하게 변환되지 않아요",
-    author: "피아노러버",
-    date: "2023-05-15",
-    views: 342,
-    content: `피아노 연주를 녹음했는데 화음 부분이 제대로 인식되지 않습니다. 어떻게 해야 더 정확한 결과를 얻을 수 있을까요?
-    
-    특히 빠른 패시지나 복잡한 화음을 연주할 때 문제가 발생합니다. 녹음 환경은 디지털 피아노(Yamaha P-125)를 오디오 인터페이스를 통해 직접 연결했고, 48kHz/24bit WAV 파일로 녹음했습니다.
-    
-    혹시 비슷한 경험이 있으신 분들 조언 부탁드립니다.`,
-    comments: [
-      {
-        id: 1,
-        author: "음악전문가",
-        date: "2023-05-15",
-        content:
-          "녹음 품질은 좋은 것 같네요. 변환 전에 오디오 노멀라이징을 해보시는 건 어떨까요? 또한 복잡한 화음의 경우 템포를 조금 늦춰서 연주한 후 변환하면 더 정확한 결과를 얻을 수 있습니다.",
-      },
-      {
-        id: 2,
-        author: "개발자Kim",
-        date: "2023-05-16",
-        content:
-          "현재 AI 변환 알고리즘이 복잡한 화음을 100% 정확하게 인식하는 데 한계가 있습니다. 피아노 연주의 경우 각 음을 조금 더 분리해서 연주하면 인식률이 높아집니다. 그리고 변환 후 MIDI 편집기에서 수동으로 조정하는 것도 좋은 방법입니다.",
-      },
-      {
-        id: 3,
-        author: "클래식팬",
-        date: "2023-05-16",
-        content:
-          "저도 비슷한 문제를 겪었는데, 녹음 전에 피아노 음량을 조금 줄이고 각 음을 더 또렷하게 연주하니 인식률이 높아졌어요. 그리고 가능하다면 MIDI 출력을 지원하는 디지털 피아노를 사용하는 것이 가장 정확합니다.",
-      },
-    ],
-  };
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5001/questions/${id}`);
+        console.log("질문 상세:", res.data.data);
+        setQuestion(res.data.data);
+      } catch (err) {
+        setError("질문을 불러오는 데 실패했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleSubmitComment = (e) => {
+    fetchQuestion();
+  }, [id]);
+
+  const handleSubmitComment = async (e) => {
     e.preventDefault();
     if (!commentText.trim()) return;
 
-    // 실제 구현에서는 API를 통해 댓글을 저장합니다
-    alert("댓글이 등록되었습니다.");
-    setCommentText("");
+    try {
+      if (!token) {
+        alert("로그인이 필요합니다.");
+        return;
+      }
+
+      const res = await axios.post(
+        `http://localhost:5001/questions/${id}/comments`,
+        { content: commentText },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // console.log("새 댓글:", res.data.data);
+
+      setQuestion((prev) => ({
+        ...prev,
+        comments: [...prev.comments, res.data.data],
+      }));
+      setCommentText("");
+    } catch (err) {
+      alert("댓글 등록에 실패했습니다.");
+    }
   };
 
-  if (!question) {
+  const handleDeleteQuestion = async () => {
+    const confirmDelete = window.confirm("정말 이 질문을 삭제하시겠습니까?");
+    if (!confirmDelete) return;
+
+    try {
+      if (!token) {
+        alert("로그인이 필요합니다.");
+        return;
+      }
+
+      await axios.delete(`http://localhost:5001/questions/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      alert("질문이 삭제되었습니다.");
+      navigate("/community");
+    } catch (err) {
+      console.error("삭제 오류:", err);
+      alert("삭제에 실패했습니다.");
+    }
+  };
+
+  if (loading) return <div className={styles.container}>불러오는 중...</div>;
+  if (error) return <div className={styles.container}>{error}</div>;
+  if (!question)
     return <div className={styles.container}>질문을 찾을 수 없습니다.</div>;
-  }
 
   return (
     <div className={styles.container}>
@@ -74,37 +107,32 @@ export default function CommunityDetail() {
 
           <div className={styles.questionMeta}>
             <div className={styles.metaItem}>
-              <User size={16} />
-              <span>{question.author}</span>
+              <Avatar user={question.author} size="xs" />
+              <span>{question.author?.username || "작성자 없음"}</span>
             </div>
             <div className={styles.metaItem}>
               <Clock size={16} />
-              <span>{question.date}</span>
+              <span>{new Date(question.created_at).toLocaleDateString()}</span>
             </div>
 
-            {/* {user && user.username === question.author && (
+            {user && user.username === question.author && (
               <div className={styles.authorActions}>
-                <Link to={`/community/edit/${id}`} className={styles.editButton}>
+                <Link
+                  to={`/community/edit/${id}`}
+                  className={styles.editButton}
+                >
                   <Edit size={16} />
                   <span>수정</span>
                 </Link>
-                <button className={styles.deleteButton}>
+                <button
+                  className={styles.deleteButton}
+                  onClick={handleDeleteQuestion}
+                >
                   <Trash2 size={16} />
                   <span>삭제</span>
                 </button>
               </div>
-            )} */}
-
-            <div className={styles.authorActions}>
-              <Link to={`/community/edit/${id}`} className={styles.editButton}>
-                <Edit size={16} />
-                <span>수정</span>
-              </Link>
-              <button className={styles.deleteButton}>
-                <Trash2 size={16} />
-                <span>삭제</span>
-              </button>
-            </div>
+            )}
           </div>
 
           <div className={styles.questionContent}>
@@ -120,21 +148,26 @@ export default function CommunityDetail() {
           </h2>
 
           <div className={styles.commentsList}>
-            {question.comments.map((comment) => (
-              <div key={comment.id} className={styles.commentItem}>
-                <div className={styles.commentHeader}>
-                  <div className={styles.commentAuthor}>
-                    <User size={16} />
-                    <span>{comment.author}</span>
+            {[...question.comments]
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+              .map((comment) => (
+                <div key={comment.id} className={styles.commentItem}>
+                  <div className={styles.commentHeader}>
+                    <div className={styles.commentAuthor}>
+                      {/* <User size={16} /> */}
+                      <Avatar user={comment.author} size="xs" />
+                      <span>{comment.author?.username || "작성자 없음"}</span>
+                    </div>
+                    <div className={styles.commentDate}>
+                      <Clock size={16} />
+                      <span>
+                        {new Date(comment.created_at).toLocaleDateString()}
+                      </span>
+                    </div>
                   </div>
-                  <div className={styles.commentDate}>
-                    <Clock size={16} />
-                    <span>{comment.date}</span>
-                  </div>
+                  <div className={styles.commentContent}>{comment.content}</div>
                 </div>
-                <div className={styles.commentContent}>{comment.content}</div>
-              </div>
-            ))}
+              ))}
           </div>
 
           {user ? (

@@ -1,10 +1,14 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
+import axios from "axios"
 import styles from "./CommunityNew.module.css"
+import useUserStore from "../stores/useUserStore"
 
 export default function CommunityNew() {
   const navigate = useNavigate()
+  const token = useUserStore((state) => state.token) 
+
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -26,23 +30,20 @@ export default function CommunityNew() {
     setIsSubmitting(true)
 
     try {
-      // 실제 구현에서는 API를 통해 질문을 저장합니다
-      // const response = await fetch("/api/questions", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(formData),
-      // });
-
-      // 제출 성공 시뮬레이션
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      await axios.post("http://localhost:5001/questions", formData, {
+        headers: {
+          "Content-Type": "application/json",
+          ...(token && { Authorization: `Bearer ${token}` }),
+        },
+      })
 
       alert("질문이 등록되었습니다.")
       navigate("/community")
     } catch (error) {
       console.error("질문 등록 중 오류:", error)
-      alert("질문 등록에 실패했습니다. 다시 시도해주세요.")
+      const message =
+        error.response?.data?.message || "질문 등록에 실패했습니다. 다시 시도해주세요."
+      alert(message)
     } finally {
       setIsSubmitting(false)
     }
