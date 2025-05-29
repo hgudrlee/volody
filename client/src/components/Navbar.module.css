@@ -101,7 +101,7 @@
     var(--primary-purple),
     var(--primary-blue)
   );
-  color: var(--bg-color);
+  color: #f8f9fa;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   text-decoration: none;
