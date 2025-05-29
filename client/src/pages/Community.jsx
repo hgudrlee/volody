@@ -19,11 +19,12 @@ export default function Community() {
   const [questions, setQuestions] = useState([]);
   const { user } = useUserStore();
   const { openLoginModal } = useModalStore();
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/questions"); // 백엔드 API 주소
+        const response = await axios.get(`${API_BASE_URL}/questions`); // 백엔드 API 주소
         setQuestions(response.data.data);
         console.log("질문 목록:", response.data.data);
       } catch (error) {

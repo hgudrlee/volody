@@ -7,7 +7,8 @@ import useUserStore from "../stores/useUserStore"
 
 export default function CommunityNew() {
   const navigate = useNavigate()
-  const token = useUserStore((state) => state.token) 
+  const token = useUserStore((state) => state.token)
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 
   const [formData, setFormData] = useState({
     title: "",
@@ -30,7 +31,7 @@ export default function CommunityNew() {
     setIsSubmitting(true)
 
     try {
-      await axios.post("http://localhost:5001/questions", formData, {
+      await axios.post(`${API_BASE_URL}/questions`, formData, {
         headers: {
           "Content-Type": "application/json",
           ...(token && { Authorization: `Bearer ${token}` }),

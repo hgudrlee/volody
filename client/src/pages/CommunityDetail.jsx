@@ -16,11 +16,12 @@ export default function CommunityDetail() {
   const [error, setError] = useState(null);
   const { user, token } = useUserStore();
   const { openLoginModal } = useModalStore();
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/questions/${id}`);
+        const res = await axios.get(`${API_BASE_URL}/questions/${id}`);
         console.log("질문 상세:", res.data.data);
         setQuestion(res.data.data);
       } catch (err) {
@@ -44,7 +45,7 @@ export default function CommunityDetail() {
       }
 
       const res = await axios.post(
-        `http://localhost:5001/questions/${id}/comments`,
+        `${API_BASE_URL}/questions/${id}/comments`,
         { content: commentText },
         {
           headers: {
@@ -75,7 +76,7 @@ export default function CommunityDetail() {
         return;
       }
 
-      await axios.delete(`http://localhost:5001/questions/${id}`, {
+      await axios.delete(`${API_BASE_URL}/questions/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
