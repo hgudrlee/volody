@@ -14,6 +14,7 @@ import EmailLoginForm from "./EmailLoginForm";
 const LoginModal = ({ onClose, onSwitch }) => {
   const { setUser } = useUserStore();
   const [step, setStep] = useState("menu"); // "menu" 또는 "email"
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const modalRef = useRef(null);
 
@@ -30,10 +31,10 @@ const LoginModal = ({ onClose, onSwitch }) => {
   const handleEmailLoginSubmit = async (e, formData) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5001/auth/login", formData);
+      const res = await axios.post(`${API_BASE_URL}/auth/login`, formData);
       localStorage.setItem("token", res.data.token);
 
-      const profileRes = await axios.get("http://localhost:5001/users/me", {
+      const profileRes = await axios.get(`${API_BASE_URL}/users/me`, {
         headers: { Authorization: `Bearer ${res.data.token}` },
       });
 
@@ -46,15 +47,15 @@ const LoginModal = ({ onClose, onSwitch }) => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5001/auth/google";
+    window.location.href = `${API_BASE_URL}/auth/google`;
   };
 
   const handleKakaoLogin = () => {
-    window.location.href = "http://localhost:5001/auth/kakao";
+    window.location.href = `${API_BASE_URL}/auth/kakao`;
   };
 
   const handleNaverLogin = () => {
-    window.location.href = "http://localhost:5001/auth/naver";
+    window.location.href = `${API_BASE_URL}/auth/naver`;
   };
 
   const handleEmailLogin = () => {

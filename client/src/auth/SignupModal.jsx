@@ -44,7 +44,7 @@ const SignupModal = ({ onClose, onSwitch }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5001/users/signup", formData);
+      await axios.post(`${API_BASE_URL}/users/signup`, formData);
       alert("회원가입 성공! 로그인 해주세요.");
       onClose(); // 또는 onSwitch();
     } catch (error) {
