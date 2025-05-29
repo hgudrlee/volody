@@ -1,7 +1,7 @@
 .footer {
   padding: 2rem 0;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e2e8f0;
+  background-color: var(--footer-bg);
+  border-top: 1px solid var(--bg-light);
 }
 
 .container {
@@ -23,14 +23,14 @@
 .logoIcon {
   height: 1.5rem;
   width: 1.5rem;
-  color: #6c5ce7;
+  color: var(--primary-purple);
   margin-right: 0.5rem;
 }
 
 .logoText {
   font-weight: 700;
   font-size: 1.25rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .footerNav {
@@ -39,7 +39,7 @@
 }
 
 .footerLink {
-  color: #4a5568;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
@@ -48,11 +48,11 @@
 }
 
 .footerLink:hover {
-  color: #6c5ce7;
+  color: var(--primary-purple);
 }
 
 .copyright {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 

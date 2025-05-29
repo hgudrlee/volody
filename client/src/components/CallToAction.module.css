@@ -1,9 +1,6 @@
 .cta {
   padding: 4rem 0;
-  background-image: url("/jumbo_bg4.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(to right, #6c5ce7, #3498db);
 }
 
 .container {

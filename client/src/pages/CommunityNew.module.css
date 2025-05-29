@@ -1,7 +1,7 @@
 .container {
   padding-top: 6rem;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: var(--com-bg);
 }
 
 .content {
@@ -13,7 +13,7 @@
 .backLink {
   display: inline-flex;
   align-items: center;
-  color: #6c5ce7;
+  color: var(--primary-purple);
   text-decoration: none;
   margin-bottom: 2rem;
   font-weight: 500;
@@ -32,17 +32,17 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .subtitle {
   font-size: 1.1rem;
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 2rem;
 }
 
 .questionForm {
-  background-color: white;
+  background-color: var(--com-card);
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 2rem;
@@ -56,24 +56,26 @@
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .input,
 .textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--input-border);
   border-radius: 0.5rem;
   font-size: 1rem;
   font-family: inherit;
   box-sizing: border-box;
+  background-color: var(--input-color);
+  color: var(--input-text-color);
 }
 
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: #6c5ce7;
+  border-color: var(--border-focus);
   box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.1);
 }
 
@@ -105,7 +107,7 @@
 
 .submitButton {
   padding: 0.75rem 1.5rem;
-  background-color: #6c5ce7;
+  background-color: var(--primary-purple);
   color: white;
   border: none;
   border-radius: 0.5rem;

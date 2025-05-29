@@ -1,7 +1,7 @@
 .container {
   padding-top: 6rem;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: var(--com-bg);
 }
 
 .content {
@@ -14,19 +14,19 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--text-primary);
   text-align: center;
 }
 
 .subtitle {
   font-size: 1.2rem;
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 3rem;
   text-align: center;
 }
 
 .uploadSection {
-  background-color: white;
+  background-color: var(--com-card);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   padding: 2rem;
@@ -34,7 +34,7 @@
 }
 
 .dropzone {
-  border: 2px dashed #d1d5db;
+  border: 2px dashed var(--border-gray);
   border-radius: 8px;
   padding: 3rem 2rem;
   text-align: center;
@@ -43,38 +43,38 @@
 }
 
 .dropzone:hover {
-  border-color: #6c5ce7;
-  background-color: #f9f7ff;
+  border-color: var(--primary-purple);
+  background-color: var(--input-color);
 }
 
 .dropzoneActive {
-  border-color: #6c5ce7;
-  background-color: #f9f7ff;
+  border-color: var(--primary-purple);
+  background-color: var(--input-color);
 }
 
 .uploadIcon {
   width: 64px;
   height: 64px;
   margin-bottom: 1rem;
-  color: #6c5ce7;
+  color: var(--primary-purple);
 }
 
 .uploadText {
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .uploadHint {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .fileInfo {
   margin-top: 1.5rem;
   padding: 1rem;
-  background-color: #f9f7ff;
+  background-color: var(--result-bg);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -83,27 +83,27 @@
 
 .fileName {
   font-weight: 500;
-  color: #333;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
 }
 
 .fileIcon {
   margin-right: 0.5rem;
-  color: #6c5ce7;
+  color: var(--primary-purple);
 }
 
 .removeButton {
   background: none;
   border: none;
-  color: #ef4444;
+  color: var(--remove-color);
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 
 .convertButton {
-  background: linear-gradient(to right, #6c5ce7, #3498db);
+  background: linear-gradient(to right, var(--primary-purple), var(--primary-blue));
   color: white;
   border: none;
   padding: 0.8rem 2rem;
@@ -117,7 +117,7 @@
 }
 
 .convertButton:hover {
-  background: linear-gradient(to right, #5b4bc4, #2980b9);
+  background: linear-gradient(to right, var(--primary-purple), var(--primary-blue));
   transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -141,7 +141,7 @@
 
 .progressStatus {
   font-weight: 500;
-  color: #6c5ce7;
+  color: var(--primary-purple);
 }
 
 .progressBar {
@@ -153,12 +153,12 @@
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(to right, #6c5ce7, #3498db);
+  background: linear-gradient(to right, var(--primary-purple), var(--primary-blue));
   transition: width 0.3s ease;
 }
 
 .resultSection {
-  background-color: white;
+  background-color: var(--com-card);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   padding: 2rem;
@@ -169,14 +169,14 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
 }
 
 .resultIcon {
   margin-right: 0.5rem;
-  color: #6c5ce7;
+  color: var(--primary-purple);
 }
 
 .downloadButtons {

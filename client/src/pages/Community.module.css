@@ -1,7 +1,7 @@
 .container {
   padding-top: 6rem;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: var(--com-bg);
 }
 
 .content {
@@ -14,13 +14,13 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--text-primary);
   text-align: center;
 }
 
 .subtitle {
   font-size: 1.2rem;
-  color: #666;
+  color: var(--text-seconda);
   margin-bottom: 3rem;
   text-align: center;
 }
@@ -35,11 +35,15 @@
 .searchBar {
   display: flex;
   align-items: center;
-  background-color: white;
-  border: 1px solid #e2e8f0;
+  background-color: var(--input-color);
+  border: 1px solid var(--input-border);
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
   flex: 1;
+}
+
+.searchBar:focus-within {
+  border-color: var(--border-focus);
 }
 
 .searchIcon {
@@ -48,6 +52,8 @@
 }
 
 .searchInput {
+  background-color: var(--input-color);
+  color: var(--input-text-color);
   border: none;
   outline: none;
   width: 100%;
@@ -84,7 +90,7 @@
 }
 
 .questionCard {
-  background-color: white;
+  background-color: var(--com-card);
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
@@ -108,16 +114,16 @@
 .questionTitle {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .arrowIcon {
-  color: #6c5ce7;
+  color: var(--primary-purple);
 }
 
 .questionPreview {
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 1rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -129,7 +135,7 @@
 .questionMeta {
   display: flex;
   gap: 1.5rem;
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 
@@ -144,13 +150,13 @@
 
 .metaItem svg {
   margin-right: 0.5rem;
-  color: #6c5ce7;
+  color: var(--primary-purple);
 }
 
 .noResults {
   text-align: center;
   padding: 3rem 0;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .noResults p:first-child {

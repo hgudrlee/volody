@@ -1,6 +1,6 @@
 .howItWorks {
   padding: 5rem 0;
-  background-color: white;
+  background-color: var(--bg-color);
 }
 
 .container {
@@ -18,12 +18,12 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .subtitle {
   font-size: 1.25rem;
-  color: #666;
+  color: var(--text-secondary);
   max-width: 700px;
   margin: 0 auto;
 }
@@ -44,15 +44,23 @@
   align-items: center;
   text-align: center;
   z-index: 2;
-  background-color: white;
+  background-color: var(--bg-color);
   padding: 1rem;
+}
+
+.step p {
+  margin-bottom: 1rem;
 }
 
 .iconContainer {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(to right, #6c5ce7, #3498db);
+  background: linear-gradient(
+    to right,
+    var(--primary-purple),
+    var(--primary-blue)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,18 +71,18 @@
 .stepIcon {
   width: 10rem;
   height: 10rem;
-  color: white;
+  color: var(--bg-color);
 }
 
 .stepTitle {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .stepDescription {
-  color: #666;
+  color: var(--text-secondary);
   max-width: 300px;
   margin: 0 auto;
 }
@@ -90,15 +98,10 @@
     gap: 0;
   }
 
-  .step {
-    flex: 1;
-    padding: 0;
-  }
-
   .progressLine {
     display: block;
     position: absolute;
-    top: 40px;
+    top: 10rem;
     left: 0;
     right: 0;
     z-index: 1;
@@ -110,7 +113,11 @@
     left: 15%;
     right: 15%;
     height: 4px;
-    background: linear-gradient(to right, #6c5ce7, #3498db);
+    background: linear-gradient(
+      to right,
+      var(--primary-purple),
+      var(--primary-blue)
+    );
   }
 
   .dot {
@@ -118,7 +125,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #6c5ce7;
+    background-color: var(--primary-purple);
     top: -4px;
   }
 
@@ -133,5 +140,16 @@
 
   .dot3 {
     right: 15%;
+  }
+}
+
+@media (max-width: 768px) {
+  .step {
+    border: 1px solid var(--step-border);
+    border-radius: 0.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
   }
 }

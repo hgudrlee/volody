@@ -1,6 +1,6 @@
 .features {
   padding: 4rem 0;
-  background-color: white;
+  background-color: var(--bg-color);
 }
 
 .container {
@@ -18,12 +18,12 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .subtitle {
   font-size: 1.25rem;
-  color: #666;
+  color: var(--text-secondary);
   max-width: 36rem;
   margin: 0 auto;
 }
@@ -36,7 +36,7 @@
 
 .featureCard {
   padding: 1.5rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-gray);
   border-radius: 0.5rem;
   transition: box-shadow 0.3s;
 }
@@ -52,18 +52,18 @@
 .featureIcon {
   height: 2.5rem;
   width: 2.5rem;
-  color: #6c5ce7;
+  color: var(--primary-purple);
 }
 
 .featureTitle {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .featureDescription {
-  color: #666;
+  color: var(--text-secondary);
 }
 
 @media (min-width: 768px) {

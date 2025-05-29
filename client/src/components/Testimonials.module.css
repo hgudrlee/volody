@@ -1,6 +1,6 @@
 .testimonials {
   padding: 4rem 0;
-  background-color: #f8f9fa;
+  background-color: var(--testimonial-bg);
 }
 
 .container {
@@ -18,12 +18,12 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .subtitle {
   font-size: 1.25rem;
-  color: #666;
+  color: var(--text-secondary);
   max-width: 36rem;
   margin: 0 auto;
 }
@@ -35,9 +35,9 @@
 }
 
 .card {
-  background-color: white;
+  background-color: var(--testimonial-card);
   border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .quote {
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 1rem;
   font-style: italic;
 }
@@ -76,12 +76,12 @@
 
 .name {
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .role {
   font-size: 0.875rem;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 @media (min-width: 768px) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, User, LogOut } from 'lucide-react';
+import { Menu, X, User, LogOut, Sun, Moon } from "lucide-react";
 import styles from "./NavBar.module.css";
 import LoginModal from "../auth/LoginModal";
 import SignupModal from "../auth/SignupModal";
@@ -12,6 +12,25 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+
+  // 다크모드 상태 (localStorage에서 초기값 가져오기 or 기본값 false)
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") === "dark";
+    }
+    return false;
+  });
+
+  // 다크모드 상태가 바뀔 때 html 최상위에 클래스 토글 + localStorage 저장
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDarkMode]);
 
   // Zustand stores 사용
   const {
@@ -51,13 +70,16 @@ export default function Navbar() {
   // 프로필 메뉴 외부 클릭 시 닫기
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (showProfileMenu && !event.target.closest(`.${styles.profileContainer}`)) {
+      if (
+        showProfileMenu &&
+        !event.target.closest(`.${styles.profileContainer}`)
+      ) {
         setShowProfileMenu(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [showProfileMenu]);
 
   const handleLogout = () => {
@@ -103,6 +125,20 @@ export default function Navbar() {
               </div>
             </div>
 
+            <div className={styles.darkModeToggle}>
+              <button
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className={styles.darkModeButton}
+                aria-label="다크모드 토글"
+                type="button"
+              >
+                {isDarkMode ? <Sun size={22} /> : <Moon size={22} />}
+                <span className={styles.darkModeText}>
+                  {isDarkMode ? "라이트모드" : "다크모드"}
+                </span>
+              </button>
+            </div>
+
             {/* 로그인 상태에 따른 조건부 렌더링 */}
             {user ? (
               // 로그인된 상태: 프로필 아바타
@@ -123,7 +159,10 @@ export default function Navbar() {
                       <User size={16} />
                       <span>프로필 보기</span>
                     </a>
-                    <button onClick={handleLogout} className={styles.dropdownItem}>
+                    <button
+                      onClick={handleLogout}
+                      className={styles.dropdownItem}
+                    >
                       <LogOut size={16} />
                       <span>로그아웃</span>
                     </button>
@@ -195,8 +234,8 @@ export default function Navbar() {
               {user ? (
                 // 로그인된 상태: 프로필 보기 + 로그아웃
                 <>
-                  <a 
-                    href="/profile" 
+                  <a
+                    href="/profile"
                     className={styles.mobileProfileButton}
                     onClick={() => setIsMenuOpen(false)}
                   >

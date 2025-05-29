@@ -10,7 +10,7 @@ export default function HowItWorks() {
     {
       icon: <img src="/voice.svg" alt="voice icon" className={styles.stepIcon} />,
       title: "음악 정보 분석",
-      description: "AI 기술을 활용하여 녹음된 음성에서 음높이, 음길이, 박자, 화음 등의 음악적 요소를 분석합니다.",
+      description: "AI를 활용하여 녹음된 음성에서 음높이, 음길이, 박자, 화음 등의 음악적 요소를 분석합니다.",
     },
     {
       icon: <img src="/files.svg" alt="files icon" className={styles.stepIcon} />,
