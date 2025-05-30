@@ -19,6 +19,8 @@
   --border-focus: #6c5ce7;
   --remove-color: #ef4444;
   --result-bg: #f8f9fa;
+  --back-bg: #f8f9fa;
+  --back-color: #000000;
 }
 
 html.dark {
@@ -42,6 +44,8 @@ html.dark {
   --border-focus: #505050;
   --remove-color: #ffffff;
   --result-bg: #373737;
+  --back-bg: #000000;
+  --back-color: #ffffff;
 }
 
 body {

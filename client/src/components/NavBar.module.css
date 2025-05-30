@@ -216,7 +216,7 @@
     var(--primary-purple),
     var(--primary-blue)
   );
-  color: var(--bg-color);
+  color: #f8f9fa;
   text-decoration: none;
   text-align: center;
   width: 100%;
@@ -393,9 +393,9 @@
 }
 
 .darkModeButton {
-  background-color: var(--bg-light);
+  background-color: var(--bg-color);
   color: var(--text-primary);
-  border: none;
+  border: 1px solid var(--border-gray);
   border-radius: 5rem;
   padding: 0.7rem 1rem;
   cursor: pointer;
@@ -404,17 +404,17 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
 }
  
 
 .darkModeText {
-  font-size: 14px;
+  font-size: 0.9rem;
 }
 
 .darkModeButton:hover {
   background-color: var(--bg-light);
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); */
 }
 
 .dark .darkModeButton {
