@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const initPassport = require("./config/passport");
 const userRoutes = require("./routes/users");
-const authRoutes = require("./routes/auth");  // 구글 로그인 라우터 추가
+const authRoutes = require("./routes/auth");
 const questionsRoutes = require("./routes/questions");
 const commentRoutes = require("./routes/comments");
 
@@ -16,24 +16,26 @@ const PORT = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
-// 세션 설정 (구글 로그인 사용 시 세션을 유지할 수 있도록)
 app.use(session({
-  secret: process.env.SESSION_SECRET,  // 보안을 위해 환경변수에서 가져옴
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
 }));
 
 app.use(passport.initialize());
-app.use(passport.session());  // passport.session()을 추가하여 세션을 처리하도록 설정
+app.use(passport.session());
 
-// Passport 초기화
 initPassport(passport);
 
-// 라우터 설정
+// 기본 루트 경로에 간단한 응답 추가
+app.get("/", (req, res) => {
+  res.send("API 서버가 정상 작동 중입니다.");
+});
+
 app.use("/users", userRoutes);
-app.use("/auth", authRoutes);  // 구글 로그인과 관련된 라우터 추가
+app.use("/auth", authRoutes);
 app.use("/questions", questionsRoutes);
-app.use("/", commentRoutes);
+app.use("/comments", commentRoutes);  // 변경: '/' → '/comments'
 
 // 서버 시작
 app.listen(PORT, () => {
