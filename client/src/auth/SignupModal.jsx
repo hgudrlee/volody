@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "./Modal.module.css";
 
 // lucide-react 아이콘 임포트
-import { X, ArrowLeft } from 'lucide-react';
+import { X, ArrowLeft } from "lucide-react";
 
 import emailIcon from "/email-login.png";
 import googleIcon from "/google-login.png";
@@ -43,9 +43,9 @@ const SignupModal = ({ onClose, onSwitch }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(`${API_BASE_URL}/users/signup`, formData);
     try {
       await axios.post(`${API_BASE_URL}/users/signup`, formData);
-      console.log(`${API_BASE_URL}/users/signup`, formData);
       alert("회원가입 성공! 로그인 해주세요.");
       onClose(); // 또는 onSwitch();
     } catch (error) {
