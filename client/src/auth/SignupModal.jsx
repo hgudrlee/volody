@@ -12,6 +12,7 @@ import kakaoIcon from "/kakao-login.png";
 
 const SignupModal = ({ onClose, onSwitch }) => {
   const [step, setStep] = useState("menu"); // "menu" 또는 "email"
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     username: "",
     email: "",
